@@ -28,7 +28,7 @@
 <meta property="og:description" content="JavaBean的使用JavaBean 是特殊的 Java 类，使用 Java 语言书写，并且遵守 JavaBean API 规范。 接下来给出的是 JavaBean 与其它 Java 类相比而言独一无二的特征：  提供一个默认的无参构造函数。 需要被序列化并且实现了 Serializable 接口。 可能有一系列可读写属性。 可能有一系列的 getter 或 setter 方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-20T12:40:28.000Z">
-<meta property="article:modified_time" content="2021-05-20T13:48:16.547Z">
+<meta property="article:modified_time" content="2021-05-20T14:07:45.046Z">
 <meta property="article:author" content="moon-light">
 <meta property="article:tag" content="网页">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-20 20:40:28 / 修改时间：21:48:16" itemprop="dateCreated datePublished" datetime="2021-05-20T20:40:28+08:00">2021-05-20</time>
+              <time title="创建时间：2021-05-20 20:40:28 / 修改时间：22:07:45" itemprop="dateCreated datePublished" datetime="2021-05-20T20:40:28+08:00">2021-05-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,16 +267,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="JavaBean的使用"><a href="#JavaBean的使用" class="headerlink" title="JavaBean的使用"></a>JavaBean的使用</h2><p>JavaBean 是<mark>特殊的 Java 类</mark>，使用 Java 语言书写，并且遵守 JavaBean API 规范。</p>
+        <hr>
+<h2 id="JavaBean的使用"><a href="#JavaBean的使用" class="headerlink" title="JavaBean的使用"></a>JavaBean的使用</h2><p>JavaBean 是<mark>特殊的 Java 类</mark>，使用 Java 语言书写，并且遵守 JavaBean API 规范。</p>
 <p>接下来给出的是 JavaBean 与其它 Java 类相比而言独一无二的特征：</p>
 <ul>
 <li>提供一个默认的无参构造函数。</li>
 <li>需要被序列化并且实现了 Serializable 接口。</li>
 <li>可能有一系列可读写属性。</li>
-<li>可能有一系列的 getter 或 <strong>setter</strong> 方法。</li>
+<li>可能有一系列的 getter 或 <strong>setter</strong> 方法。<span id="more"></span></li>
 </ul>
-<span id="more"></span>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runoob;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentsBean</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String firstName = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">private</span> String lastName = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">StudentsBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> firstName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lastName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstName</span><span class="params">(String firstName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLastName</span><span class="params">(String lastName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>编译后获得 <strong>StudentBean.class</strong> 文件，将其拷贝到 <strong>&lt;JSP 项目&gt;/WebContent/WEB-INF/classes/com/runoob</strong></p>
