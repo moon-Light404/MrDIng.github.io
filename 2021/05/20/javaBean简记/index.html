@@ -277,7 +277,6 @@
 <h2 id="JavaBean的使用"><a href="#JavaBean的使用" class="headerlink" title="JavaBean的使用"></a>JavaBean的使用</h2><p>JavaBean 是<mark>特殊的 Java 类</mark>，使用 Java 语言书写，并且遵守 JavaBean API 规范。</p>
 <p>接下来给出的是 JavaBean 与其它 Java 类相比而言独一无二的特征：</p>
 <span id="more"></span>
-
 <ul>
 <li>提供一个默认的无参构造函数。</li>
 <li>需要被序列化并且实现了 Serializable 接口。</li>
@@ -285,23 +284,14 @@
 <li>可能有一系列的 getter 或 <strong>setter</strong> 方法。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runoob;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentsBean</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String firstName = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">private</span> String lastName = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">StudentsBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> firstName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lastName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstName</span><span class="params">(String firstName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.firstName = firstName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLastName</span><span class="params">(String lastName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译后获得 <strong>StudentBean.class</strong> 文件，将其拷贝到 <strong>&lt;JSP 项目&gt;/WebContent/WEB-INF/classes/com/runoob</strong></p>
+<p>编译后获得 <strong>StudentBean.class</strong> 文件，将其拷贝到 <strong><JSP 项目>/WebContent/WEB-INF/classes/com/runoob</JSP></strong></p>
 <h2 id="访问javaBean"><a href="#访问javaBean" class="headerlink" title="访问javaBean"></a>访问javaBean</h2><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:useBean id = <span class="string">&quot;bean的名字&quot;</span> scope=<span class="string">&quot;bean的作用域&quot;</span> typeSpec/&gt;</span><br></pre></td></tr></table></figure>
-
-
-
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:useBean id = <span class="string">&quot;date&quot;</span> <span class="class"><span class="keyword">class</span> </span>= <span class="string">&quot;java.util.Date&quot;</span>/&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    日期为: &lt;%= date%&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;%--可以把date看成一个Date类型的变量,<span class="class"><span class="keyword">class</span>表示类型--%&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:useBean id = <span class="string">&quot;id&quot;</span> <span class="class"><span class="keyword">class</span> </span>= <span class="string">&quot;bean 编译的类&quot;</span> scope = <span class="string">&quot;bean作用域&quot;</span>&gt;</span><br><span class="line">    &lt;jsp:setProperty name = <span class="string">&quot;bean的id&quot;</span> property=<span class="string">&quot;属性名&quot;</span></span><br><span class="line">    			value=<span class="string">&quot;value&quot;</span>/&gt;</span><br><span class="line">    &lt;jsp:getProperty name = <span class="string">&quot;bean的id&quot;</span> property=<span class="string">&quot;属性名&quot;</span>/&gt;</span><br><span class="line">    ......</span><br><span class="line">&lt;/jsp:useBean&gt;</span><br></pre></td></tr></table></figure>
-
 <p><strong>把”bean的id”当作一个java对象，property表示该对象的某一个属性或变量,value可以设置或获取该变量的值</strong></p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;jsp:useBean id=<span class="string">&quot;students&quot;</span> </span><br><span class="line">                    <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.runoob.StudentsBean&quot;</span>&gt; </span><br><span class="line">   &lt;jsp:setProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;firstName&quot;</span></span><br><span class="line">                    value=<span class="string">&quot;小强&quot;</span>/&gt;</span><br><span class="line">   &lt;jsp:setProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;lastName&quot;</span> </span><br><span class="line">                    value=<span class="string">&quot;王&quot;</span>/&gt;</span><br><span class="line">   &lt;jsp:setProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;age&quot;</span></span><br><span class="line">                    value=<span class="string">&quot;10&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:useBean&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;学生名字: </span><br><span class="line">   &lt;jsp:getProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;firstName&quot;</span>/&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;学生姓氏: </span><br><span class="line">   &lt;jsp:getProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;lastName&quot;</span>/&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;学生年龄: </span><br><span class="line">   &lt;jsp:getProperty name=<span class="string">&quot;students&quot;</span> property=<span class="string">&quot;age&quot;</span>/&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>&lt;jsp:useBean id=”beanName” class=”package.class”** **scope=”page|request|session|application”/&gt;</strong></p>
-<p>在<a href="jsp:useBean">jsp:useBean</a>块中id表示的对象名是已经被实例化的，可以直接使用<mark>对象.方法名</mark>调用方法设置参数。在&lt;%%&gt;块中也可以实现和调用java代码。</p>
+<p> <strong>&lt;jsp:useBean id=”beanName” class=”package.class”</strong> <strong>scope=”page|request|session|application”/&gt;</strong></p>
+<p>在<jsp:useBean>块中id表示的对象名是已经被实例化的，可以直接使用<mark>对象.方法名</mark>调用方法设置参数。在&lt;%%&gt;块中也可以实现和调用java代码。</jsp:useBean></p>
 
     </div>
 
@@ -529,6 +519,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
