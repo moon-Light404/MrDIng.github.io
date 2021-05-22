@@ -20,30 +20,36 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="小心翼翼只会一无所有">
-<meta property="og:type" content="website">
-<meta property="og:title" content="云曦">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="LCS最长公共子序列最长公共子序列（longest common sequence）和最长公共子串（longest common substring）不是一回事儿。即一个给定的序列的&#x3D;&#x3D;子序列&#x3D;&#x3D;，就是将给定序列中&#x3D;&#x3D;零个或多个元素去掉之后&#x3D;&#x3D;得到的结果。什么是&#x3D;&#x3D;子串&#x3D;&#x3D;，给定串中任意个&#x3D;&#x3D;连续&#x3D;&#x3D;的字符组成的子序列称为该串的子串。 动态规划 设Ax,Bx表示 A  和 B的连续前 x 项构成的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划常见模型">
+<meta property="og:url" content="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="云曦">
-<meta property="og:description" content="小心翼翼只会一无所有">
+<meta property="og:description" content="LCS最长公共子序列最长公共子序列（longest common sequence）和最长公共子串（longest common substring）不是一回事儿。即一个给定的序列的&#x3D;&#x3D;子序列&#x3D;&#x3D;，就是将给定序列中&#x3D;&#x3D;零个或多个元素去掉之后&#x3D;&#x3D;得到的结果。什么是&#x3D;&#x3D;子串&#x3D;&#x3D;，给定串中任意个&#x3D;&#x3D;连续&#x3D;&#x3D;的字符组成的子序列称为该串的子串。 动态规划 设Ax,Bx表示 A  和 B的连续前 x 项构成的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/azBNfs.md.jpg">
+<meta property="og:image" content="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/d9b0IS.md.jpg">
+<meta property="article:published_time" content="2021-05-22T07:40:42.000Z">
+<meta property="article:modified_time" content="2021-05-22T07:51:42.850Z">
 <meta property="article:author" content="moon-light">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/azBNfs.md.jpg">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>云曦</title>
+  <title>动态规划常见模型 | 云曦</title>
   
 
 
@@ -196,9 +202,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -214,10 +221,9 @@
       <meta itemprop="name" content="云曦">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">动态规划常见模型</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          动态规划常见模型
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -264,7 +270,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="LCS最长公共子序列"><a href="#LCS最长公共子序列" class="headerlink" title="LCS最长公共子序列"></a>LCS最长公共子序列</h2><p>最长公共子序列（longest common sequence）和最长公共子串（longest common substring）不是一回事儿。即一个给定的序列的==子序列==，就是将给定序列中==零个或多个元素去掉之后==得到的结果。什么是==子串==，给定串中任意个==连续==的字符组成的子序列称为该串的子串。</p>
+        <h2 id="LCS最长公共子序列"><a href="#LCS最长公共子序列" class="headerlink" title="LCS最长公共子序列"></a>LCS最长公共子序列</h2><p>最长公共子序列（longest common sequence）和最长公共子串（longest common substring）不是一回事儿。即一个给定的序列的==子序列==，就是将给定序列中==零个或多个元素去掉之后==得到的结果。什么是==子串==，给定串中任意个==连续==的字符组成的子序列称为该串的子串。</p>
 <p><strong>动态规划</strong></p>
 <p>设<code>Ax,Bx</code>表示 A  和 B的连续前 x 项构成的子序列，用<code>LCS(x,y)</code>表示它们的最长公共子序列长度，那原问题就是求<code>LCS(m,n)</code>。</p>
 <p>用$L(x,y)$表示Ax和Bx的一个最长公共子序列。</p>
@@ -326,686 +332,50 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">    dp[n][j] = f[n][j];<span class="comment">//n表示层数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">        dp[i][j] = <span class="built_in">max</span>(dp[i+<span class="number">1</span>][j],dp[i+<span class="number">1</span>][j+<span class="number">1</span>]) + f[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/22/%E5%9B%BE%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/22/%E5%9B%BE%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">图算法总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-22 15:31:50 / 修改时间：15:39:54" itemprop="dateCreated datePublished" datetime="2021-05-22T15:31:50+08:00">2021-05-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="图算法-数组版"><a href="#图算法-数组版" class="headerlink" title="图算法(数组版)"></a>图算法(数组版)</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/22/%E5%9B%BE%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/21/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数组模拟数据结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-05-21 11:53:16 / 修改时间：12:02:23" itemprop="dateCreated datePublished" datetime="2021-05-21T11:53:16+08:00">2021-05-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>我们可以用数组模拟数据结构，自定义一些函数和变量表示地址和value，而免去了过多的数据结构的定义，特别是指针的麻烦。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/21/%E6%95%B0%E7%BB%84%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">排序算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-21 11:46:37" itemprop="dateCreated datePublished" datetime="2021-05-21T11:46:37+08:00">2021-05-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-22 15:39:02" itemprop="dateModified" datetime="2021-05-22T15:39:02+08:00">2021-05-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><h3 id="1、排序"><a href="#1、排序" class="headerlink" title="1、排序"></a>1、排序</h3><ul>
-<li>比较类排序</li>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>moon-light
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/" title="动态规划常见模型">http://example.com/2021/05/22/动态规划常见模型/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<h3 id="2、复杂度"><a href="#2、复杂度" class="headerlink" title="2、复杂度"></a>2、复杂度</h3><p><mark>相关概念</mark></p>
-<ul>
-<li>稳定：如果 a 本来在 b 前面，而a = b ，排序之后 a 仍然在 b 的前面</li>
-<li>不稳定：如果 a 本来 在b的前面，而 a = b ，排序之后 a 可能在 b 的后面</li>
-<li>时间复杂度：对排序数据的<mark>总的操作数</mark>，反映当 n 变化时，操作次数呈什么变化</li>
-<li>空间复杂度： 指算法计算机内执行时所需<mark>存空间</mark>的度量，也是数据规模 n 的函数</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+</div>
 
-    
-    
-    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/22/%E5%9B%BE%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="prev" title="图算法总结">
+      <i class="fa fa-chevron-left"></i> 图算法总结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/%E8%83%8C%E5%8C%85%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/%E8%83%8C%E5%8C%85%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">背包汇总</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-20 21:58:58" itemprop="dateCreated datePublished" datetime="2021-05-20T21:58:58+08:00">2021-05-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-22 15:40:11" itemprop="dateModified" datetime="2021-05-22T15:40:11+08:00">2021-05-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h2 id="categories-学习"><a href="#categories-学习" class="headerlink" title="categories: 学习"></a>categories: 学习</h2><h1 id="背包问题汇总"><a href="#背包问题汇总" class="headerlink" title="背包问题汇总"></a>背包问题汇总</h1><h3 id="01背包问题-easy"><a href="#01背包问题-easy" class="headerlink" title="01背包问题(easy)"></a>01背包问题(easy)</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/20/%E8%83%8C%E5%8C%85%E6%B1%87%E6%80%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/javaBean%E7%AE%80%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/javaBean%E7%AE%80%E8%AE%B0/" class="post-title-link" itemprop="url">javaBean简记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-20 20:40:28" itemprop="dateCreated datePublished" datetime="2021-05-20T20:40:28+08:00">2021-05-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-22 15:40:03" itemprop="dateModified" datetime="2021-05-22T15:40:03+08:00">2021-05-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h2 id="JavaBean的使用"><a href="#JavaBean的使用" class="headerlink" title="JavaBean的使用"></a>JavaBean的使用</h2><p>JavaBean 是<mark>特殊的 Java 类</mark>，使用 Java 语言书写，并且遵守 JavaBean API 规范。</p>
-<p>接下来给出的是 JavaBean 与其它 Java 类相比而言独一无二的特征：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/20/javaBean%E7%AE%80%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/%E5%A4%A7%E6%95%B4%E6%95%B0%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/%E5%A4%A7%E6%95%B4%E6%95%B0%E7%B1%BB/" class="post-title-link" itemprop="url">大整数类</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-20 08:31:48" itemprop="dateCreated datePublished" datetime="2021-05-20T08:31:48+08:00">2021-05-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-21 11:48:09" itemprop="dateModified" datetime="2021-05-21T11:48:09+08:00">2021-05-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="大整数模拟四则运算"><a href="#大整数模拟四则运算" class="headerlink" title="大整数模拟四则运算"></a>大整数模拟四则运算</h2><p>用结构体模拟大整数(很长很多位的数字)四则运算</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/20/%E5%A4%A7%E6%95%B4%E6%95%B0%E7%B1%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/19/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tou.jpg">
-      <meta itemprop="name" content="moon-light">
-      <meta itemprop="description" content="小心翼翼只会一无所有">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="云曦">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/19/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-19 20:49:33" itemprop="dateCreated datePublished" datetime="2021-05-19T20:49:33+08:00">2021-05-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-20 11:55:25" itemprop="dateModified" datetime="2021-05-20T11:55:25+08:00">2021-05-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>367</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/19/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -1058,6 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">LCS最长公共子序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L2-008-%E6%9C%80%E9%95%BF%E5%AF%B9%E7%A7%B0%E5%AD%90%E4%B8%B2-%EF%BC%8825-%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">L2-008 最长对称子串 （25 分)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%92%8C"><span class="nav-number">3.</span> <span class="nav-text">最长连续和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples"><span class="nav-number">4.</span> <span class="nav-text">examples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#letcode-279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">letcode 279.完全平方数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80"><span class="nav-number">4.1.1.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C"><span class="nav-number">4.1.2.</span> <span class="nav-text">解法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%A1%94%E9%97%AE%E9%A2%98-%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0p427"><span class="nav-number">4.2.</span> <span class="nav-text">数塔问题 (算法笔记p427)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
