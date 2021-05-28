@@ -202,6 +202,292 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tou.jpg">
+      <meta itemprop="name" content="moon-light">
+      <meta itemprop="description" content="小心翼翼只会一无所有">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="云曦">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">操作系统之页面调度算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-28 19:30:10 / 修改时间：20:16:38" itemprop="dateCreated datePublished" datetime="2021-05-28T19:30:10+08:00">2021-05-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a><a href="#">页面置换算法</a></h1><p><strong>概念</strong>   地址映射过程中，若在页面中发现所要访问的页面不在内存中，则产生缺页中断。当发生缺页中断时，如果操作系统内存中没有空闲页面，则操作系统必须在内存选择一个页面将其移出内存，以便为即将调入的页面让出空间。而用来选择淘汰哪一页的规则叫做页面置换算法。</p>
+<h2 id="先进先出置换算法-FIFO"><a href="#先进先出置换算法-FIFO" class="headerlink" title="先进先出置换算法 FIFO"></a>先进先出置换算法 FIFO</h2><p>是最简单的页面置换算法。这种算法的基本思想是：当需要淘汰一个页面时，总是选择驻留主存时间最长的页面进行淘汰，即先进入主存的页面先淘汰。其理由是：最早调入主存的页面不再被使用的可能性最大。</p>
+<p>例如要访问的页面顺序为 7 0 1 2 0 3 0 4 2 3 0</p>
+<p><img src="/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/image-20210528193338317.png" alt="image-20210528193338317"></p>
+<p>先进先出算法采用的是队列模拟的，而不是堆栈式的。</p>
+<p><mark>队列表示页面进入内存的先后顺序</mark>，开始时队列变化情况如下:(最右栏表示内存中此时的页面)</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong><font color="red">7</font></strong></th>
+<th style="text-align:center"><strong>0</strong></th>
+<th style="text-align:center"><strong>1</strong></th>
+<th style="text-align:center">201</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong><font color="red">0</font></strong></td>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:center">231</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><font color="red">1</font></strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:center"><strong>3</strong></td>
+<td style="text-align:center">230</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><font color="red">2</font></strong></td>
+<td style="text-align:center"><strong>3</strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center">430</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><font color="red">3</font></strong></td>
+<td style="text-align:center"><strong>0</strong></td>
+<td style="text-align:center"><strong>4</strong></td>
+<td style="text-align:center">420</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><font color="red">0</font></strong></td>
+<td style="text-align:center"><strong>4</strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:center">423</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><font color="red">4</font></strong></td>
+<td style="text-align:center"><strong>2</strong></td>
+<td style="text-align:center"><strong>3</strong></td>
+<td style="text-align:center">023</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>每次把新置换进入内存的页面放入队列尾部并把队列头部的页面号除去.</p>
+<p>FIFO算法还会产生当所分配的物理块数增大而页故障数不减反增的异常现象，这是由$ Belady$于1969年发现，故称为$Belady$异常，如图3-28所示。只有FIFO算法可能出现$Belady$ 异常，而$LRU和OPT$算法永远不会出现$Belady$异常。</p>
+<h2 id="最佳置换算法-OPT"><a href="#最佳置换算法-OPT" class="headerlink" title="最佳置换算法 OPT"></a>最佳置换算法 OPT</h2><p>理想置换算法）：从主存中移出永远不再需要的页面；如无这样的页面存在，则选择<mark>最长时间不需要访问</mark>的页面。于所选择的被淘汰页面将是以后永不使用的，或者是在<mark>最长时间内不再被访问</mark>的页面，这样可以保证获得最低的缺页率。 </p>
+<p>最佳置换算法可以用来评价其他算法。假定系统为某进程分配了三个物理块，并考虑有以下页面号引用串：<br>  7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1<br>进程运行时，先将7, 0, 1三个页面依次装入内存。进程要访问页面2时，产生缺页中断，根据最佳置换算法，选择第18次访问才需调入的页面7予以淘汰。然后，访问页面0时，因为已在内存中所以不必产生缺页中断。访问页面3时又会根据最佳置换算法将页面1淘汰……依此类推，如图3-26所示。从图中可以看出釆用最佳置换算法时的情况。</p>
+<p><img src="/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/image-20210528194836989.png" alt="image-20210528194836989"></p>
+<p><img src="/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/image-20210528195017996.png" alt="image-20210528195017996"></p>
+<h2 id="最近最久未使用算法-LRU"><a href="#最近最久未使用算法-LRU" class="headerlink" title="最近最久未使用算法  LRU"></a>最近最久未使用算法  LRU</h2><p>利用局部性原理，根据一个作业在执行过程中过去的页面访问历史来推测未来的行为。它认为过去一段时间里不曾被访问过的页面，在最近的将来可能也不会再被访问。所以，这种算法的实质是：当需要淘汰一个页面时，总是选择<mark>在最近一段时间内最久不用的页面</mark>予以淘汰。 </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>访问页面</th>
+<th>7</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>0</th>
+<th>3</th>
+<th>0</th>
+<th>4</th>
+<th>2</th>
+<th>3</th>
+<th>0</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>2</th>
+<th>0</th>
+<th>1</th>
+<th>7</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物理块 1</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>2</td>
+<td></td>
+<td>2</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>物理块2</td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td>3</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>物理块3</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>3</td>
+<td></td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td>2</td>
+<td></td>
+<td>2</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>缺页否</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td></td>
+<td>✔</td>
+<td></td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td></td>
+<td></td>
+<td>✔</td>
+<td></td>
+<td>✔</td>
+<td></td>
+<td>✔</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>实际上，LRU算法根据各页以前的情况，是“向前看”的，而最佳置换算法则根据各页以后的使用情况，是“向后看”的。</p>
+<p><mark>每次置换页面时都看前面几个处理过的页面，说明前面的几个页面是最近使用过的页面(不能置换)。</mark></p>
+<p>LRU性能较好，但需要寄存器和栈的硬件支持。LRU是堆栈类的算法。理论上可以证明，堆栈类算法不可能出现Belady异常。FIFO算法基于队列实现，不是堆栈类算法。</p>
+<h2 id="时钟-CLOCK-置换算法"><a href="#时钟-CLOCK-置换算法" class="headerlink" title="时钟(CLOCK)置换算法"></a>时钟(CLOCK)置换算法</h2><p>LRU算法的性能接近于OPT,但是实现起来比较困难，且开销大；FIFO算法实现简单，但性能差。所以操作系统的设计者尝试了很多算法，试图用比较小的开销接近LRU的性能，这类算法都是CLOCK算法的变体。</p>
+<blockquote>
+<p>简单的CLOCK算法是给每一帧关联一个附加位，称为使用位。当某一页首次装入主存时，该帧的使用位设置为1;当该页随后再被访问到时，它的使用位也被置为1。对于页替换算法，用于替换的候选帧集合看做一个循环缓冲区，并且有一个指针与之相关联。当某一页被替换时，该指针被设置成指向缓冲区中的下一帧。当需要替换一页时，操作系统扫描缓冲区，以查找使用位被置为0的一帧。每当遇到一个使用位为1的帧时，操作系统就将该位重新置为0；如果在这个过程开始时，缓冲区中所有帧的使用位均为0，则选择遇到的第一个帧替换；如果所有帧的使用位均为1,则指针在缓冲区中完整地循环一周，把所有使用位都置为0，并且停留在最初的位置上，替换该帧中的页。由于该算法循环地检查各页面的情况，故称为CLOCK算法，又称为最近未用(Not Recently Used, NRU)算法。</p>
+</blockquote>
+<p>CLOCK算法的性能比较接近LRU，而通过增加使用的位数目，可以使得CLOCK算法更加高效。<mark>在使用位的基础上再增加一个修改位</mark>，则得到改进型的CLOCK置换算法。这样，每一帧都处于以下四种情况之一：</p>
+<ol>
+<li>最近未被访问，也未被修改(u=0, m=0)。</li>
+<li>最近被访问，但未被修改(u=1, m=0)。</li>
+<li>最近未被访问，但被修改(u=0, m=1)。</li>
+<li>最近被访问，被修改(u=1, m=1)。</li>
+</ol>
+<h3 id="算法执行如下操作步骤："><a href="#算法执行如下操作步骤：" class="headerlink" title="算法执行如下操作步骤："></a>算法执行如下操作步骤：</h3><ol>
+<li>从指针的当前位置开始，扫描帧缓冲区。在这次扫描过程中，对使用位不做任何修改。选择遇到的第一个帧(u=0, m=0)用于替换。</li>
+<li>如果第1)步失败，则重新扫描，查找(u=0, m=1)的帧。选择遇到的第一个这样的帧用于替换。在这个扫描过程中，对每个跳过的帧，把它的使用位设置成0。</li>
+<li>如果第2)步失败，指针将回到它的最初位置，并且集合中所有帧的使用位均为0。重复第1步，并且如果有必要，重复第2步。这样将可以找到供替换的帧。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fkissx/p/4712959.html">感谢这位大佬的博客最后的部分和例题可以看这里——&gt;</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -693,7 +979,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-22 15:40:03" itemprop="dateModified" datetime="2021-05-22T15:40:03+08:00">2021-05-22</time>
+                <time title="修改时间：2021-05-22 19:27:56" itemprop="dateModified" datetime="2021-05-22T19:27:56+08:00">2021-05-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -711,7 +997,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1013,20 +1299,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1062,12 +1348,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">35k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">31 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
