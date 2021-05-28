@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="python爬虫分析python是解释执行 12if __name__ &#x3D;&#x3D; &amp;#x27;__main__&amp;#x27;:	# 当程序执行时    main()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬虫笔记">
+<meta property="og:url" content="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="云曦">
+<meta property="og:description" content="python爬虫分析python是解释执行 12if __name__ &#x3D;&#x3D; &amp;#x27;__main__&amp;#x27;:	# 当程序执行时    main()">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320211452.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320211803.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320212428.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320212638.png">
+<meta property="og:image" content="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/%60%60test.jpg%60">
+<meta property="og:image" content="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/%60%60test.jpg%60">
+<meta property="og:image" content="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/20210327210812.png">
+<meta property="og:image" content="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/20210327211825.png">
+<meta property="article:published_time" content="2021-05-28T12:47:00.000Z">
+<meta property="article:modified_time" content="2021-05-28T12:50:45.018Z">
+<meta property="article:author" content="moon-light">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320211452.png">
+
+<link rel="canonical" href="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>python爬虫笔记 | 云曦</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+  <!-- 爆炸红心效果 -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/firework.js"></script>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">云曦</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Choice is more important than effort</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tou.jpg">
+      <meta itemprop="name" content="moon-light">
+      <meta itemprop="description" content="小心翼翼只会一无所有">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="云曦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python爬虫笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-28 20:47:00 / 修改时间：20:50:45" itemprop="dateCreated datePublished" datetime="2021-05-28T20:47:00+08:00">2021-05-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="python爬虫分析"><a href="#python爬虫分析" class="headerlink" title="python爬虫分析"></a>python爬虫分析</h1><p>python是解释执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:	<span class="comment"># 当程序执行时</span></span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+ <span id="more"></span>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">response = urllib.request.urlopen(<span class="string">&quot;http://www.baidu.com&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取post请求</span></span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line">data = <span class="built_in">bytes</span>(urllib.parse.urlencode(&#123;<span class="string">&quot;hello&quot;</span>:<span class="string">&quot;world&quot;</span>&#125;),encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">response = urllib.request.urlopen(<span class="string">&quot;https://httpbin.org/post&quot;</span>,data = data)</span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 超时处理</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = urllib.request.urlopen(<span class="string">&quot;http://httpbin.org/get&quot;</span>,timeout=<span class="number">0.01</span>)</span><br><span class="line">    <span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="keyword">except</span> urllib.error.URLError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;time out!&quot;</span>)</span><br><span class="line"><span class="comment"># response.getreader(“Server”)</span></span><br><span class="line"><span class="comment"># response.getheaders</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 伪造和模拟headers,不让服务器识破,告诉服务器我们是是什么样的浏览器，可以接收什么水平的数据和内容</span></span><br><span class="line">url = <span class="string">&quot;....&quot;</span></span><br><span class="line">headers = &#123;</span><br><span class="line">	<span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot; &quot;</span>: <span class="string">&quot; &quot;</span>	</span><br><span class="line">&#125; </span><br><span class="line">data = <span class="built_in">bytes</span>(urllib.parse.urlencode(&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;eric&#x27;</span>&#125;),encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 封装一个对象Request</span></span><br><span class="line">req = urllib.request.Request(url=url,data=data,headers=headers,method=<span class="string">&#x27;POST&#x27;</span>)</span><br><span class="line">response = urllib.request.urlopen(req)</span><br><span class="line"><span class="built_in">print</span>(response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="提取网页的html代码"><a href="#提取网页的html代码" class="headerlink" title="提取网页的html代码"></a>提取网页的html代码</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37616069/article/details/80376776">最简单的方式request模块</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自己生成request请求</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    url = <span class="string">&quot;https://www.douban.com/&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(askURl(url))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">askURl</span>(<span class="params">url</span>):</span></span><br><span class="line">    head = &#123;<span class="string">&quot;User-agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36&quot;</span>&#125;</span><br><span class="line">    request = urllib.request.Request(url,headers=head)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = urllib.request.urlopen(request)</span><br><span class="line">        html = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span> urllib.error.URLError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(e,<span class="string">&quot;code&quot;</span>):</span><br><span class="line">            <span class="built_in">print</span>(e.code)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(e,<span class="string">&quot;reason&quot;</span>):</span><br><span class="line">            <span class="built_in">print</span>(e.reason)</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 使用自带的request包模块</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://www.douban.com/&quot;</span><span class="comment">#需要爬取图片的网页地址</span></span><br><span class="line">page = requests.get(url).text<span class="comment">#得到网页源码</span></span><br><span class="line"><span class="built_in">print</span>(page)</span><br><span class="line">res = re.<span class="built_in">compile</span>(<span class="string">r&#x27;src=&quot;(http.+?.jpg)&quot;&#x27;</span>)<span class="comment">#运用正则表达式过滤出图片路径地址</span></span><br><span class="line">reg = re.findall(res, page)<span class="comment">#匹配网页进行搜索出图片地址数组</span></span><br><span class="line"><span class="comment">#print(reg)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#循环遍历下载图片</span></span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> reg:</span><br><span class="line">    a = requests.get(i)</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&quot;img/%s.jpg&quot;</span>%num, <span class="string">&#x27;wb&#x27;</span>)<span class="comment">#以二进制格式写入img文件夹中</span></span><br><span class="line">    f.write(a.content)</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第%s张图片下载完毕&quot;</span>%num)</span><br><span class="line">    num = num+<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="BeautifulSoup4"><a href="#BeautifulSoup4" class="headerlink" title="BeautifulSoup4"></a>BeautifulSoup4</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1445225">学习链接</a></p>
+<p><strong>对象的种类</strong></p>
+<p>使用BeautifulSoup==解析这段代码==,能够得到一个 BeautifulSoup 的对象,并能按照标准的缩进格式的结构输出.</p>
+<p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种: Tag , NavigableString , BeautifulSoup , Comment .</p>
+<p><strong><code>Tag</code> </strong>: 标签及其内容: 拿到它所找到的第一个内容</p>
+<p>属性访问方法：<code>tag.name</code>、  <code>tag.attrs</code>、<code>tag[&#39;class&#39;]、tag[&#39;id&#39;]、tag.get(&#39;class&#39;)</code></p>
+<p>==tag的属性操作方法与字典一样==</p>
+<p><strong><code>NavigableString</code></strong>: 标签里的内容(字符串)    字符串常被包含在tag内.Beautiful Soup用 NavigableString 类来包装tag中的字符串:</p>
+<p><strong><code>BeattifulSoup</code></strong>:   整个文档</p>
+<p><strong><code>comment</code></strong>:  </p>
+<p><strong>解析</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="comment"># 读取文件内容</span></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;./baidu.html&quot;</span>,<span class="string">&quot;rb&quot;</span>)</span><br><span class="line">html = file.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析文件</span></span><br><span class="line">soup = BeautifulSoup(html) </span><br></pre></td></tr></table></figure>
+<p><strong>浏览数据的方法</strong></p>
+<ul>
+<li>基于bs4库HTML的格式输出 如何让<html>页面更友好的显示</html></li>
+</ul>
+<font color="blue">`标签.prettify()`</font>
+
+
+
+<ul>
+<li>判断对象是否包含某个属性</li>
+</ul>
+<font color="blue">`tag.has_attr("name")`</font>
+
+
+
+<ul>
+<li>包含class属性</li>
+</ul>
+<font color="blue">`class_=True`</font>
+
+
+
+<ul>
+<li>应用正则表达式来查找包含特定文本的内容(标签里的字符串)</li>
+</ul>
+<p><code>find_all(text = re.compile(&quot;\d&quot;))</code> #包含数字的字符串</p>
+<ul>
+<li><code>limit</code>参数表示获取多少个</li>
+</ul>
+<p><code>find_all(&quot;a&quot;,limit = 3)</code></p>
+<ul>
+<li><p>css选择器</p>
+<p>标签  <code>soup.select(&#39;title&#39;)</code></p>
+</li>
+</ul>
+<p>类名  <code>soup.select(&quot;.manv&quot;)</code></p>
+<p>id  <code>soup.select(&quot;#u1&quot;)</code></p>
+<p>属性 <code>soup.select(&quot;a[class = &#39;bri&#39;]&quot;)</code></p>
+<p><code>兄弟节点查找 bs.select(&quot;.manv ~ .bri&quot;)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">soup.title</span><br><span class="line"></span><br><span class="line">soup.title.name</span><br><span class="line"></span><br><span class="line">soup.title.string</span><br><span class="line"></span><br><span class="line">soup.title.parent.name</span><br><span class="line"><span class="comment"># u&#x27;head&#x27;</span></span><br><span class="line"></span><br><span class="line">soup.p <span class="comment"># 查找的第一个p标签</span></span><br><span class="line"></span><br><span class="line">soup.p[<span class="string">&#x27;class&#x27;</span>] <span class="comment"># 第一个p标签的class元素内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串过滤：查找与字符串完全匹配的内容</span></span><br><span class="line">soup.find_all(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以传参数  查找第一个特定标签,所有用 find_all</span></span><br><span class="line">soup.find(<span class="built_in">id</span> == <span class="string">&quot;link3&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从文档中找到所有&lt;a&gt;标签链接</span></span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">&#x27;a&#x27;</span>):</span><br><span class="line">    <span class="built_in">print</span>(link.get(<span class="string">&#x27;href&#x27;</span>))</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 获取文字内容</span></span><br><span class="line">soup.get_text()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><img src="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320211452.png" alt="image-20210320211445451"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320211803.png" alt="image-20210320211803359"></p>
+<font color="blue">`\D`非数字</font>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320212428.png" alt="image-20210320212428150"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/moon-Light404/my_picgo/img/20210320212638.png" alt="image-20210320212638419"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建模式对象</span></span><br><span class="line">pat = re.<span class="built_in">compile</span>(<span class="string">&quot;AA&quot;</span>) <span class="comment"># 正则表达式，用来验证其他的字符串</span></span><br><span class="line">m = pat.search(<span class="string">&quot;ABCAA&quot;</span>)<span class="comment"># search字符串被校验的内容</span></span><br><span class="line"><span class="comment"># &lt;re.Match object; span = (3,5), match =&#x27;AA&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 无模式对象</span></span><br><span class="line">m = re.search(<span class="string">&quot;asd&quot;</span>,<span class="string">&quot;Aasd&quot;</span>) <span class="comment"># 前面的字符串是规则，后面的字符串是被校验的对象</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;ASDaDFGAa&quot;</span>)) <span class="comment"># 前面是规则(正则表达式)，后面是被校验的字符串</span></span><br><span class="line"><span class="built_in">print</span>(re.findall(<span class="string">&quot;[A-Z]&quot;</span>,<span class="string">&quot;ASDaDFGAa&quot;</span>))</span><br><span class="line"><span class="comment">#[&#x27;A&#x27;,&#x27;S&#x27;,&#x27;D&#x27;,&#x27;D&#x27;,&#x27;F&#x27;,&#x27;G&#x27;,&#x27;A&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;A&quot;</span>,<span class="string">&quot;abcdcasd&quot;</span>))<span class="comment"># 找到a用A替换</span></span><br><span class="line"><span class="comment"># AbcdcAsd</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在正则表达式中，被比较的字符串前面加上 r ，不用担心转义字符的问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">r&quot;\aabd=\&#x27;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># \aabd-\&#x27;</span></span><br><span class="line"><span class="comment"># 如果没有加, \&#x27; 就是 &#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="正则表达式注意点"><a href="#正则表达式注意点" class="headerlink" title="正则表达式注意点"></a>正则表达式注意点</h3><p><code>.*</code> 与 <code>.?</code>的区别</p>
+<p>比如说匹配输入串A: 101000000000100</p>
+<ul>
+<li><p>使用 1.<em>1 将会匹配到1010000000001, 匹配方法: 先<em>*匹配至输入串A的最后, 然后向前匹配</em></em>, 直到可以匹配到1, 称之为==贪婪匹配==(匹配的是最后一个1)</p>
+</li>
+<li><p>使用 1.<em>?1 将会匹配到101, 匹配方法:</em> 匹配下一个1之前的所有字符, 称之为==非贪婪匹配==。</p>
+</li>
+</ul>
+<p><code>?</code> -&gt; ==贪婪匹配==</p>
+<ol>
+<li><p><code>.*</code><br>. 表示 匹配除换行符 \n 之外的任何单字符，<em>表示零次或多次。所以.</em>在一起就表示任意字符出现零次或多次。没有?表示贪婪模式。比如a.<em>b，它将会匹配==最长的以a开始，以b结束的字符串==。如果用它来搜索aabab的话，它会匹配整个字符串aabab。这被称为贪婪匹配。<br>又比如模式src=`.</em><code>， 它将会匹配最长的以 src=</code> 开始，以<code>结束的最长的字符串。用它来搜索 &lt;img src=``test.jpg</code> width=<code>60px</code> height=<code>80px</code>/&gt; 时，将会返回 src=<code>`test.jpg</code> width=<code>60px</code> height=<code>80px</code></p>
+</li>
+<li><p><code>.*?</code><br>?跟在<em>或者+后边用时，表示懒惰模式。也称==非贪婪模式==。就是匹配尽可能少的字符。就意味着匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复。<br>a.</em>?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。<br>又比如模式 src=<code>.*?</code>，它将会匹配 src=<code>开始，以</code> 结束的尽可能短的字符串。且开始和结束中间可以没有字符，因为*表示零到多个。用它来搜索 <img src="/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/``test.jpg`" width="`60px`" height="`80px`/"> 时，将会返回 src=``。</p>
+</li>
+<li><p><code>.+?</code><br>同上，?跟在<em>或者+后边用时，表示懒惰模式。也称非贪婪模式。就意味着匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复。<br>a.+?b匹配最短的，以a开始，以b结束的字符串，但==a和b中间至少要有一个字符==。如果把它应用于ababccaab的话，它会匹配abab（第一到第四个字符）和aab（第七到第九个字符）。注意此时匹配结果不是ab,ab和aab。因为a和b中间至少要有一个字符。<br>又比如模式 src=<code>.+?</code>，它将会匹配 src=<code>开始，以</code> 结束的尽可能短的字符串。且开始和结束中间必须有字符，因为+表示1到多个。用它来搜索 <img src="/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/``test.jpg`" width="`60px`" height="`80px`/"> 时，将会返回 src=<code>`test.jpg</code>。注意与.</em>?时的区别，此时不会匹配src=<code>`，因为src=</code> 和 ` 之间至少有一个字符。<br>————————————————</p>
+</li>
+</ol>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_32336967/article/details/94761771">https://blog.csdn.net/sinat_32336967/article/details/94761771</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">findlink = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;a href=&quot;(.*?)&quot;&gt;&#x27;</span>) </span><br><span class="line"><span class="comment"># 里面的()表示的是要查询的一个组，link中的数据只是一个http://....网址</span></span><br><span class="line">link = re.findall(findlink,string)</span><br></pre></td></tr></table></figure>
+<h3 id="findall总结"><a href="#findall总结" class="headerlink" title="findall总结"></a>findall总结</h3><ul>
+<li><code>re.compile</code>用于编译正则表达式，生成正则表达式(Pattern)对象</li>
+</ul>
+<p><code>re.compile(pattern,匹配模式)</code></p>
+<ul>
+<li><code>findall</code>在字符串中找到==正则表达式所匹配的所有子串==，返回一个列表，否则为空列表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、`findall(规则表达式字符串， 被查找的字符串)`</span><br><span class="line"><span class="number">2</span>、 pattern = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d+&#x27;</span>)</span><br><span class="line">res1 = pattern.findall(被查找的字符串,start,end) <span class="comment">#左闭右开</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>bs4中的find_all</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、soup = BeautifulSoup(htm,<span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、pid = soup.find_all(<span class="string">&#x27;a&#x27;</span>,&#123;<span class="string">&#x27;class&#x27;</span>:<span class="string">&#x27;sister&#x27;</span>&#125;)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> pid:</span><br><span class="line">        <span class="built_in">print</span> i.get(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">        </span><br><span class="line"><span class="number">3</span>、pid = soup.find_all(<span class="string">&#x27;p&#x27;</span>,<span class="built_in">id</span> = <span class="string">&#x27;hehe&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、利用正则搜索标签</span><br><span class="line">soup.find_all(<span class="built_in">id</span>=re.<span class="built_in">compile</span>(<span class="string">&quot;he$&quot;</span>))</span><br><span class="line">多属性</span><br><span class="line">soup.find_all(<span class="string">&#x27;a&#x27;</span>,attrs=&#123;<span class="string">&#x27;href&#x27;</span>:re.<span class="built_in">compile</span>(<span class="string">&#x27;^http&#x27;</span>),<span class="string">&#x27;id&#x27;</span>:<span class="string">&#x27;link1&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">检索个数限制</span><br><span class="line">soup.find_all(<span class="string">&#x27;a&#x27;</span>,limit=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>soup</code>可以通过<code>soup+标签名称</code>获取html中第一个匹配的标签内容</li>
+</ul>
+<h4 id><a href="#" class="headerlink" title=" "></a> </h4><hr>
+<h3 id="urllib-request-Request解析"><a href="#urllib-request-Request解析" class="headerlink" title="urllib.request.Request解析"></a>urllib.request.Request解析</h3><p><code>urlopen()</code>方法实现最基本的请求的发起，可以加入Headers等信息，就可以利用==Request类来构造请求==</p>
+<p><code>urllib.request.Request(url,data=None,headers=&#123;&#125;,origin_req_host=None,unverifiable=False, method=None)</code></p>
+<p>基本用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request = urllib.request.Request(url)</span><br><span class="line">reponse = urllib.request.urlopen(request)</span><br><span class="line"><span class="comment">## 打印的是网页源码</span></span><br><span class="line"><span class="built_in">print</span>(reponse.read().decode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>url</th>
+<th>要请求的url</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>data必须是bytes(字节流）类型，如果是字典，可以用urllib.parse模块里的urlencode()编码</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>headers是一个字典类型，是请求头。可以在构造请求时通过headers参数直接构造，也可以通过调用请求实例的add_header()方法添加。可以通过请求头伪装浏览器，默认User-Agent是Python-urllib。要伪装火狐浏览器，可以设置User-Agent为Mozilla/5.0 (x11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11</td>
+</tr>
+<tr>
+<td>origin_req_host</td>
+<td>指定请求方的host名称或者ip地址</td>
+</tr>
+<tr>
+<td>unverifiable</td>
+<td>设置网页是否需要验证，默认是False，这个参数一般也不用设置。</td>
+</tr>
+<tr>
+<td>method</td>
+<td>method是一个字符串，用来指定请求使用的方法，比如GET，POST和PUT等。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="xlwt模块"><a href="#xlwt模块" class="headerlink" title="xlwt模块"></a>xlwt模块</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>python操作Excel表格的模块有很多：</p>
+<p>1、xlrd： 读取 xls 格式Excel文件数据；<br>2、xlwt： 将数据写入 xls 格式Excel文件；<br>3、openpyxl： 读取、写入 xlsx 格式Excel文件；<br>4、pandas： 通过 xlrd 与 xlwt 模块实现xls 格式Excel文件的读写操作；<br>5、win32com： 获取 Excel 应用接口，实现Excel 文件的读写。</p>
+<p>这里介绍 xlwt 模块将数据写入Excel的基本操作</p>
+<ul>
+<li>建立工作簿，增加sheet表</li>
+</ul>
+<p>建立工作簿对象———新建sheet表———将数据写入———保存文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建工作簿</span></span><br><span class="line">work_book = xlwt.Workbook(encoding = <span class="string">&#x27;utf-8&#x27;</span>,style_compression=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#增加sheet表</span></span><br><span class="line">work_sheet = work_book.add_sheet(<span class="string">&#x27;Test&#x27;</span>)</span><br><span class="line"><span class="comment"># add_sheet(self,sheetname,cell_overwrite_ok=False)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#写入数据</span></span><br><span class="line">work_sheet.write(x,y,信息) <span class="comment"># x,y坐标(从0开始)</span></span><br><span class="line"><span class="comment"># 保存文件</span></span><br><span class="line">work_book.save(savepath) </span><br></pre></td></tr></table></figure>
+<ul>
+<li>单元格写入数据、合并</li>
+</ul>
+<p>合并单元格并写入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">work_sheet.merge(<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment">#merge(self,r1,r2,c1,c2,style=Style.default_style):</span></span><br><span class="line"><span class="comment"># r1起始行 r2合并终止行 c1 c2类似</span></span><br><span class="line"></span><br><span class="line">work_sheet.write_merge(<span class="number">4</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="string">&#x27;合并单元格数据&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/20210327210812.png" alt="image-20210327210704570"></p>
+<ul>
+<li>插入位图</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 插入位图</span></span><br><span class="line">work_sheet.insert_bitmap(<span class="string">&#x27;01.bmp&#x27;</span>,<span class="number">5</span>,<span class="number">0</span>)</span><br><span class="line"><span class="string">&quot;insert_bitmap(self, filename, row, col, x = 0, y = 0, scale_x = 1, scale_y = 1):&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#filename:文件名称</span></span><br><span class="line"><span class="comment">#row：行 col：列</span></span><br><span class="line"><span class="comment">#x，y：设定单元格的x，y距离</span></span><br><span class="line"><span class="comment">#scale：缩放比例</span></span><br><span class="line">注意：图片必须为bmp位图，且需为<span class="number">24</span>位真色彩，会PhotoShop的可以自己调整一下图片。</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xlwt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建工作簿</span></span><br><span class="line">book = xlwt.Workbook()</span><br><span class="line"></span><br><span class="line"><span class="comment">#增加sheet表</span></span><br><span class="line">work_sheet = book.add_sheet(<span class="string">&#x27;Test&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#单元格</span></span><br><span class="line">work_sheet.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">&#x27;Hello World&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将列表数据写入单元格</span></span><br><span class="line">test_list = [<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>)]</span><br><span class="line">work_sheet.write_rich_text(<span class="number">1</span>,<span class="number">0</span>,test_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并单元格</span></span><br><span class="line">work_sheet.write_merge(<span class="number">4</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="string">&#x27;合并单元格数据&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入位图</span></span><br><span class="line">work_sheet.insert_bitmap(<span class="string">&#x27;01.bmp&#x27;</span>,<span class="number">5</span>,<span class="number">0</span>)</span><br><span class="line">work_sheet.insert_bitmap(<span class="string">&#x27;01,bmp&#x27;</span>,<span class="number">5</span>,<span class="number">8</span>,x=<span class="number">50</span>,y=<span class="number">50</span>,scale_x=<span class="number">0.5</span>,scale_y=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#保存文件</span></span><br><span class="line">book.save(<span class="string">&#x27;Test.xls&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/20210327211825.png" alt="image-20210327211824957" style="zoom:67%;"></p>
+<ul>
+<li>获取sheet表对象属性</li>
+</ul>
+<p>获得当前sheet表属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(work_sheet.get_name())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置名称</span></span><br><span class="line">work_sheet.set_name(<span class="string">&#x27;Test_rename&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>moon-light
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/05/28/python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/" title="python爬虫笔记">http://example.com/2021/05/28/python爬虫笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag"># 大数据</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%A1%B5%E9%9D%A2%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/" rel="prev" title="操作系统之页面调度算法">
+      <i class="fa fa-chevron-left"></i> 操作系统之页面调度算法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E7%88%AC%E8%99%AB%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">python爬虫分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E7%BD%91%E9%A1%B5%E7%9A%84html%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">提取网页的html代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeautifulSoup4"><span class="nav-number">1.2.</span> <span class="nav-text">BeautifulSoup4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">1.3.1.</span> <span class="nav-text">正则表达式注意点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findall%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.2.</span> <span class="nav-text">findall总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.3.2.1.</span> <span class="nav-text"> </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#urllib-request-Request%E8%A7%A3%E6%9E%90"><span class="nav-number">1.3.3.</span> <span class="nav-text">urllib.request.Request解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">参数解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xlwt%E6%A8%A1%E5%9D%97"><span class="nav-number">1.5.</span> <span class="nav-text">xlwt模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="moon-light"
+      src="/images/tou.jpg">
+  <p class="site-author-name" itemprop="name">moon-light</p>
+  <div class="site-description" itemprop="description">小心翼翼只会一无所有</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-04 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">moon-light</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">43k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">39 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+ 
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+</body>
+</html>
